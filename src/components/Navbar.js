@@ -20,10 +20,10 @@ export  function Navbar () {
         </li>
       </ul>
       <div className="d-flex nav-item">
-      <a className="nav-link text-light" href="#">Login</a>
+      <Link className="nav-link text-light" to='/login'>Login</Link>
       </div>
       <div className="d-flex nav-item">
-      <a className="nav-link text-light" href="#">Register</a>
+      <Link className="nav-link text-light" href="#" to="/register"> Register </Link>
       </div>
     </div>
   </div>
