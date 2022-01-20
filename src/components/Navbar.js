@@ -6,7 +6,9 @@ export  function Navbar () {
   return (<>
   <nav className="navbar navbar-expand-lg  navbar navbar-dark bg-dark">
   <div className="container-fluid">
-    <a className="navbar-brand" >Navbar</a>
+    <a className="navbar-brand" ><i class="fas fa-video"></i>
+
+</a>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>
@@ -16,7 +18,7 @@ export  function Navbar () {
           <Link className="nav-link active" to="/movies-list" aria-current="page" >Movies </Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="#">Favourites</a>
+          <Link className="nav-link" to={'/movies-favourite'}>Favourites</Link>
         </li>
       </ul>
       <div className="d-flex nav-item">

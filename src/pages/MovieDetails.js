@@ -1,19 +1,20 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import axios from 'axios';
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from "react-redux";
+import {SetMovies} from '../store/Actions/SetMovies'
 import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 export default function MovieDetails() {
   
    const [movie , setmovie] = useState({})
    const params = useParams();
+
     useEffect(() => {
-        
+     
      axios.get(`https://api.themoviedb.org/3/movie/${params.id}?api_key=672cdfe6607c2166acf2affdb81ae188`).then(
-        
          res => {
               setmovie(res.data)
-              console.log(res)
          }
      )
      

@@ -8,15 +8,22 @@ export default function MoviesList() {
    const [movies , setmovies] = useState([])
    const [Mname , setMname] = useState('');
    const [searchmode , setsearchmode] = useState(false);
+   const [change , setchange] = useState([])
+   const [notfount , setnotfound] = useState()
+
    
    useEffect(() => {
     getmoviebypage();
    // getmovies();
    }, []);
    useEffect(() => {
-   // getmovies();
-   }, [movies]);
-   
+   console.log(change)
+   }, [movies,change]);
+
+   function ischange(e){
+     console.log("ahmed")
+    setchange([...change , e])
+   }
   function getmoviebypage(pageno){
     setsearchmode(false)
     axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=672cdfe6607c2166acf2affdb81ae188&page=${pageno}`).then(
@@ -32,18 +39,22 @@ export default function MoviesList() {
   }
   function getname(e){
     setMname(e.target.value)
-    e.target.value = 'nssss'
   }
   function search(e){
     e.preventDefault();
     setsearchmode(true)
     axios.get(`https://api.themoviedb.org/3/search/movie?api_key=7a1c19ea3c361a4d3cc53eb70ef8298c&query=${Mname}`).then(
       res => {
-        
         setmovies(res.data.results)
+        console.log(res.data.results)
+        if (res.data.results.length === 0){
+          setnotfound(true)
+        } else {
+          setnotfound(false)
+        }
       }
-     
   )
+  console.log(e)
   }
   /*function getmovies(){
     axios.get('https://api.themoviedb.org/3/movie/popular?api_key=672cdfe6607c2166acf2affdb81ae188').then(
@@ -61,7 +72,7 @@ export default function MoviesList() {
       
 <div class="input-group mb-3">
   <form className='col-10' onSubmit={(e)=> {search(e)}}>
-     <input type="text" value={Mname} name='Mname' onChange={(e)=> getname(e)} class="form-control" placeholder="Movie name ..." 
+     <input type="text" value={Mname} name='Mname' onChangeCapture={(e)=> getname(e)} class="form-control" placeholder="Movie name ..." 
      aria-label="Recipient's username" aria-describedby="basic-addon2"/>
       <div class="input-group-append">
     <button class="btn btn-outline-secondary mt-2"  type="submit">Search</button>
@@ -69,12 +80,12 @@ export default function MoviesList() {
   </form>
  
 </div> <button className='btn btn-outline-dark' style={{visibility : searchmode === false ? "hidden" : "visible"}} onClick={(e)=> backtoall(e)} > Back To All Movies</button>
-       <div  style={{visibility : searchmode === false ? "hidden" : "visible"}} > <h2> {`serch result for '${Mname}'`}</h2> </div>
       <div className='row'>
-     {
-         movies.map( movie => {
+    
+     {   
+         movies.map( movie => {      
            return ( <>
-              <MovieCard key={movie.id} id={movie.id} title={movie.title}  poster_path={movie.poster_path} vote_average={movie.vote_average}/>
+              <MovieCard  changed={(e)=> ischange(e)} isfav={false}  key={movie.id} id={movie.id} title={movie.title}  poster_path={movie.poster_path} vote_average={movie.vote_average}/>
               </>
            )
          })
