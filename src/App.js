@@ -8,10 +8,13 @@ import Loginform from "./pages/Loginform";
 import Registerform from "./pages/Registerform";
 import FavouriteMovies from "./pages/FavouriteMovies";
 import '@fortawesome/fontawesome-free/css/all.css'
-
+import { useState } from "react";
+import { LanguageContext } from "./context/context";
 
 function App() {
+  const [language , setlanguage] = useState("en");
   return (
+  <LanguageContext.Provider value={{language,setlanguage}}>
   <BrowserRouter>
   <Navbar />
   <Routes>
@@ -23,6 +26,7 @@ function App() {
     <Route path='/movie-details/:id' element={<MovieDetails/>} ></Route>
   </Routes>
   </BrowserRouter>
+  </LanguageContext.Provider>
   );
 }
 

@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState ,useContext } from 'react';
 import { useSelector } from 'react-redux';
 import MovieCard from '../components/MovieCard';
+import { LanguageContext } from '../context/context';
 export default function FavouriteMovies() {
-      const movies = useSelector(state => state);
-     const [change , setchange] = useState([])
+      const movies = useSelector(state => state.favourite);
+      const [change , setchange] = useState([])
+     
+
       useEffect(() => { 
         console.log(" item deleted ")    
       }, [movies,change]);
@@ -12,7 +15,7 @@ export default function FavouriteMovies() {
     setchange([...change , e])
    }
   return <div className='container'>
-     <h1 className='m-3'> Favourite Movies </h1>
+     <h1 className='m-3'> Favourite Movies </h1> 
      <div className='row'>
 
      {
