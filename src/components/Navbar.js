@@ -22,7 +22,7 @@ export  function Navbar (props) {
    setlanguage(language == "en" ? "ar" : "en")
  }
   return (<>
-  <nav className="navbar navbar-expand-lg  navbar navbar-dark bg-dark">
+  <nav className="navbar navbar-expand-lg  navbar navbar-dark bg-primary">
   <div className="container-fluid">
     <a className="navbar-brand" ><i class="fas fa-video"></i>
 

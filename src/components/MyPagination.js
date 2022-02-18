@@ -22,8 +22,8 @@ export default function MyPagination(props) {
   return (
     <div style={{visibility:hidden ? "hidden" : "visible"}}>
       <Stack spacing={2}>
-      <Typography>Page: {page} </Typography>
-      <Pagination count={10} page={page} onChange={handleChange} />
+      <Typography >Page: {page} </Typography>
+      <Pagination className='bg-light pr-5' count={10} page={page} onChange={handleChange} />
     </Stack>
     </div>
     

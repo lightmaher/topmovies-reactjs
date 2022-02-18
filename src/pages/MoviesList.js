@@ -30,7 +30,6 @@ export default function MoviesList() {
   function getmoviebypage(pgno){
     setsearchmode(false)
     dispatch(SetMovies(pgno))
-   
   }
   function backtoall(e){
     e.preventDefault();
@@ -75,23 +74,29 @@ export default function MoviesList() {
      <input type="text" value={Mname} name='Mname' onChangeCapture={(e)=> getname(e)} class="form-control" placeholder="Movie name ..." 
      aria-label="Recipient's username" aria-describedby="basic-addon2"/>
       <div class="input-group-append">
-    <button class="btn btn-outline-secondary mt-2"  type="submit">Search</button>
+    <button class="btn btn-primary mt-2"  type="submit">Search</button>
   </div>
   </form>
  
-</div> <button className='btn btn-outline-dark' style={{visibility : searchmode === false ? "hidden" : "visible"}} onClick={(e)=> backtoall(e)} > Back To All Movies</button>
+</div> <button className='btn btn-outline-danger ' style={{visibility : searchmode === false ? "hidden" : "visible"}} onClick={(e)=> backtoall(e)} > Back To All Movies</button>
       <div className='row'>
-    
-     {   
+     {   searchmode === false ?   
          mymovies.map( movie => {      
            return ( <>
               <MovieCard  changed={(e)=> ischange(e)} isfav={false}  key={movie.id} id={movie.id} title={movie.title}  poster_path={movie.poster_path} vote_average={movie.vote_average}/>
               </>
            )
          })
+         : 
+         movies.map( movie => {      
+          return ( <>
+             <MovieCard  changed={(e)=> ischange(e)} isfav={false}  key={movie.id} id={movie.id} title={movie.title}  poster_path={movie.poster_path} vote_average={movie.vote_average}/>
+             </>
+          )
+        })
      }
    </div>
-   <div className='col-12 p-5'>
+   <div className='col-12 p-5 '>
    <MyPagination hide={searchmode} onmove={(e) => getmoviebypage(e)}/>
    </div>
    </div>
